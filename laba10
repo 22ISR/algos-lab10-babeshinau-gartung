@@ -1,0 +1,44 @@
+import tkinter as Tk
+root = Tk.Tk()
+root.geometry("800x500")
+root.title("списак туду")
+root.configure(bg='lightpink')
+
+def add_task():
+    listbox.insert(Tk.END, textbox.get())
+
+def get_selected():
+    selected = listbox.curselection()
+    if selected:
+        print("Выбрано:", listbox.get(selected[0])) 
+
+def delete_selected():
+    selected = listbox.curselection()
+    if selected:
+        listbox.delete(selected[0])
+
+def delete_all():
+    listbox.delete(0, Tk.END)
+
+
+textbox = Tk.Entry(root, width=33, font=("Arial", 16))
+textbox.pack(padx=10, pady=10)
+
+listbox = Tk.Listbox(root, width=50, height=10)
+listbox.pack(padx=20, pady=10)
+
+add_btn = Tk.Button(text="дабавь", font=("Arial", 16), command=add_task)
+add_btn.pack(padx=20, pady=10)
+
+listbox.insert(Tk.END, "а вы знали, паша техник умер?")
+listbox.insert(Tk.END, "а паша техник умер")
+listbox.insert(Tk.END, "да?? реально??")
+
+delete_button = Tk.Button(root, text="удали",font=("Arial", 16), command=delete_selected)
+delete_button.pack(padx=20, pady=10)    
+
+del_all_btn = Tk.Button(text="ачисти", font=("Arial", 16), command=delete_all)
+del_all_btn.pack(padx=20, pady=10)
+
+
+root.mainloop()
